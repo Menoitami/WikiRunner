@@ -21,7 +21,6 @@ add_subdirectory(GameWindow)
 
 
 
-
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(WikiRunner
         MANUAL_FINALIZATION
@@ -42,6 +41,8 @@ endif()
 # Линкуем библиотеку RegWindow с основным проектом
 target_link_libraries(WikiRunner PRIVATE Qt${QT_VERSION_MAJOR}::Widgets RegWindow GameWindow)
 target_link_libraries(WikiRunner PRIVATE Qt6::Network)
+
+
 
 if(${QT_VERSION} VERSION_LESS 6.1.0)
     set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER com.example.RegWindow)
