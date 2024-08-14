@@ -19,13 +19,15 @@ set(PROJECT_SOURCES
 add_subdirectory(RegWindow)  # Добавляем директориb
 add_subdirectory(GameWindow)
 add_subdirectory(MainWindow)
+add_subdirectory(MenuWindow)
 
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(WikiRunner
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        Menu/menuwindow.h Menu/menuwindow.cpp Menu/menuwindow.ui
+
+
     )
 else()
     if(ANDROID)
@@ -40,7 +42,7 @@ else()
 endif()
 
 # Линкуем библиотеку RegWindow с основным проектом
-target_link_libraries(WikiRunner PRIVATE Qt${QT_VERSION_MAJOR}::Widgets RegWindow GameWindow MainWindow)
+target_link_libraries(WikiRunner PRIVATE Qt${QT_VERSION_MAJOR}::Widgets RegWindow GameWindow MainWindow MenuWindow)
 target_link_libraries(WikiRunner PRIVATE Qt6::Network)
 
 

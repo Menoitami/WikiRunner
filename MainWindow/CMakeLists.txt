@@ -23,6 +23,6 @@ add_library(MainWindow STATIC
 )
 
 target_link_libraries(MainWindow PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
-target_link_libraries(MainWindow PRIVATE RegWindow)
+target_link_libraries(MainWindow PRIVATE RegWindow MenuWindow)
 target_include_directories(MainWindow PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 

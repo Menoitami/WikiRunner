@@ -19,7 +19,6 @@ set(HEADERS
 add_library(RegWindow STATIC
     ${SOURCES}
     ${HEADERS}
-    regwindow.h regwindow.cpp regwindow.ui
 )
 
 target_link_libraries(RegWindow PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)

@@ -15,10 +15,15 @@ public:
     explicit RegWindow(QWidget *parent = nullptr);
     ~RegWindow();
 
+
+
 private slots:
-
-
     void on_LogInButton_clicked();
+
+
+signals:
+
+    void login_sig();
 
 private:
     Ui::RegWindow *ui;

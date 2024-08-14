@@ -9,18 +9,43 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     this->resize(QSize(1024,768));
 
-    regwindow = new RegWindow(this);
-    currentWid = regwindow;
+    regWindow = new RegWindow(this);
+     connect(regWindow, &RegWindow::login_sig, this, &MainWindow::openMenu);
 
-    setCentralWidget(regwindow);
+
+
+    menuWindow = new MenuWindow(this);
+    menuWindow->hide();
+
+
+
+
+
+    currentWid = regWindow;
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
-    if (regwindow) {
-        delete regwindow;
+    if (regWindow) {
+        delete regWindow;
     }
+    if (menuWindow) {
+        delete menuWindow;
+    }
+
+
 }
 
+
+void MainWindow::openMenu(){
+
+
+    currentWid->hide();
+
+    currentWid = menuWindow;
+
+    currentWid->show();
+
+}
 

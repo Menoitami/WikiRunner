@@ -15,8 +15,12 @@ RegWindow::~RegWindow()
 
 
 
+
+
 void RegWindow::on_LogInButton_clicked()
 {
+
+    emit login_sig();
 
 }
 

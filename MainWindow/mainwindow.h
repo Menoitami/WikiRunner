@@ -5,7 +5,7 @@
 #include <QRect>
 #include <QResizeEvent>
 #include "regwindow.h"
-
+#include "menuwindow.h"
 
 namespace Ui {
 class MainWindow;
@@ -19,9 +19,14 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+public slots:
+
+    void openMenu();
+
 private:
     Ui::MainWindow *ui;
-    RegWindow* regwindow;
+    RegWindow* regWindow;
+    MenuWindow* menuWindow;
     QWidget* currentWid;
 
 
