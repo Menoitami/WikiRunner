@@ -21,11 +21,12 @@ add_subdirectory(GameWindow)
 add_subdirectory(MainWindow)
 
 
+
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(WikiRunner
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        Menu/menuwindow.h Menu/menuwindow.cpp Menu/menuwindow.ui
+        
     )
 else()
     if(ANDROID)
