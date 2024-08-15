@@ -20,12 +20,14 @@ add_subdirectory(RegWindow)  # Добавляем директориb
 add_subdirectory(GameWindow)
 add_subdirectory(MainWindow)
 add_subdirectory(MenuWindow)
+add_subdirectory(PersonClass)
 
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(WikiRunner
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
+        Pictures.qrc
 
 
     )
@@ -42,7 +44,7 @@ else()
 endif()
 
 # Линкуем библиотеку RegWindow с основным проектом
-target_link_libraries(WikiRunner PRIVATE Qt${QT_VERSION_MAJOR}::Widgets RegWindow GameWindow MainWindow MenuWindow)
+target_link_libraries(WikiRunner PRIVATE Qt${QT_VERSION_MAJOR}::Widgets RegWindow GameWindow MainWindow MenuWindow PersonClass)
 target_link_libraries(WikiRunner PRIVATE Qt6::Network)
 
 
