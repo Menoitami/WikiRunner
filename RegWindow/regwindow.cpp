@@ -1,33 +1,40 @@
 #include "regwindow.h"
 #include "ui_regwindow.h"
 
-RegWindow::RegWindow(QWidget *parent)
+RegWindow::RegWindow(QWidget *parent, std::shared_ptr<PersonClass> person)
     : QWidget(parent)
     , ui(new Ui::RegWindow)
 {
+
+    this->person= person;
+
     ui->setupUi(this);
 
-    QFile file("../../LocalSettings/Person.json");
-    qDebug()<<file.fileName();
+    ui->nickEdit->setText(person->getName());
 
-    if (!file.open(QIODevice::ReadOnly)) {
-        qWarning("Couldn't open file.");
-        return;
+    QString imagePath = person->getImage();
+
+
+    QFileInfo checkFile(imagePath);
+    if (checkFile.exists() && checkFile.isFile()) {
+        QPixmap pixmap(imagePath);
+
+        ui->pictureLabel->setPixmap(pixmap.scaled(150, 150));
+    } else {
+        qWarning() << "File does not exist or is not a file:" << imagePath;
     }
-
-    QByteArray fileData = file.readAll();
-    file.close();
-
-    QJsonDocument doc(QJsonDocument::fromJson(fileData));
-
-    PersonClass person(doc);
-
 
 }
 
 RegWindow::~RegWindow()
 {
     delete ui;
+
+    if (person){
+        person = nullptr;
+
+    }
+
 }
 
 
@@ -40,9 +47,9 @@ void RegWindow::on_changePicButton_clicked()
     QString fileName = QFileDialog::getOpenFileName(this,
                                             tr("Open Image"), "./", tr("Image Files (*.png *.jpg *.bmp)"));
 
-
-
-
-    ui->pictureLabel->setPixmap(QPixmap(fileName).scaled(QSize(150,150)));
+    ui->pictureLabel->setPixmap(QPixmap(fileName).scaled(150,150));
 }
+
+
+
 

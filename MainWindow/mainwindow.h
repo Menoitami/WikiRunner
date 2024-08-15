@@ -20,15 +20,17 @@ public:
     ~MainWindow();
 
 public slots:
-    //void setPersonClass();
+
+
+signals:
+
 
 private:
     Ui::MainWindow *ui;
     RegWindow* regWindow;
     MenuWindow* menuWindow;
     QWidget* currentWid;
-    //PersonClass person;
-
+    std::shared_ptr<PersonClass> person;
 
 };
 

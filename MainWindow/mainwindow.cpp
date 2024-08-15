@@ -9,11 +9,21 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     this->resize(QSize(1024,768));
 
-    regWindow = new RegWindow(this);
+    QFile file("../../LocalSettings/Person.json");
+
+    if (!file.open(QIODevice::ReadOnly)) {
+        qWarning("Couldn't open file.");
+        return;
+    }
+
+    QByteArray fileData = file.readAll();
+    file.close();
+    QJsonDocument doc(QJsonDocument::fromJson(fileData));
+    person = std::make_shared<PersonClass>(doc);
+
+
+    regWindow = new RegWindow(this, person);
     setCentralWidget(regWindow);
-
-
-
     menuWindow = new MenuWindow(this);
     menuWindow->hide();
 
@@ -31,9 +41,14 @@ MainWindow::~MainWindow()
     if (menuWindow) {
         delete menuWindow;
     }
+    if (person){
+        person = nullptr;
+
+    }
 
 
 }
+
 
 
 
