@@ -6,6 +6,23 @@ RegWindow::RegWindow(QWidget *parent)
     , ui(new Ui::RegWindow)
 {
     ui->setupUi(this);
+
+    QFile file("../../LocalSettings/Person.json");
+    qDebug()<<file.fileName();
+
+    if (!file.open(QIODevice::ReadOnly)) {
+        qWarning("Couldn't open file.");
+        return;
+    }
+
+    QByteArray fileData = file.readAll();
+    file.close();
+
+    QJsonDocument doc(QJsonDocument::fromJson(fileData));
+
+    PersonClass person(doc);
+
+
 }
 
 RegWindow::~RegWindow()
@@ -20,13 +37,12 @@ RegWindow::~RegWindow()
 void RegWindow::on_changePicButton_clicked()
 {
 
-   QString fileName = QFileDialog::getOpenFileName(this,
+    QString fileName = QFileDialog::getOpenFileName(this,
                                             tr("Open Image"), "./", tr("Image Files (*.png *.jpg *.bmp)"));
 
 
 
 
-   ui->pictureLabel->setPixmap(QPixmap(fileName).scaled(QSize(150,150)));
-
+    ui->pictureLabel->setPixmap(QPixmap(fileName).scaled(QSize(150,150)));
 }
 

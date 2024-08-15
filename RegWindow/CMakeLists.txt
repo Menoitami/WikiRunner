@@ -22,5 +22,6 @@ add_library(RegWindow STATIC
 )
 
 target_link_libraries(RegWindow PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(RegWindow PRIVATE PersonClass)
 target_include_directories(RegWindow PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 

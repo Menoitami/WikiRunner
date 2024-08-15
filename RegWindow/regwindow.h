@@ -4,6 +4,9 @@
 #include <QWidget>
 #include <QFileDialog>
 #include <QFile>
+#include <QJsonDocument>
+#include <QByteArray>
+#include <personclass.h>
 
 namespace Ui {
 class RegWindow;
@@ -27,7 +30,7 @@ private slots:
 
 signals:
 
-
+    void sendPersonToMainWindow();
 
 private:
     Ui::RegWindow *ui;
