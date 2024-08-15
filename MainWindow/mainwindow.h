@@ -3,7 +3,6 @@
 
 #include <QMainWindow>
 #include <QRect>
-#include <QResizeEvent>
 #include "regwindow.h"
 #include "menuwindow.h"
 
@@ -21,7 +20,6 @@ public:
 
 public slots:
 
-    void openMenu();
 
 private:
     Ui::MainWindow *ui;

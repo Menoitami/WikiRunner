@@ -2,6 +2,8 @@
 #define REGWINDOW_H
 
 #include <QWidget>
+#include <QFileDialog>
+#include <QFile>
 
 namespace Ui {
 class RegWindow;
@@ -18,12 +20,14 @@ public:
 
 
 private slots:
-    void on_LogInButton_clicked();
 
+
+
+    void on_changePicButton_clicked();
 
 signals:
 
-    void login_sig();
+
 
 private:
     Ui::RegWindow *ui;

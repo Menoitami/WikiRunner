@@ -17,10 +17,16 @@ RegWindow::~RegWindow()
 
 
 
-void RegWindow::on_LogInButton_clicked()
+void RegWindow::on_changePicButton_clicked()
 {
 
-    emit login_sig();
+   QString fileName = QFileDialog::getOpenFileName(this,
+                                            tr("Open Image"), "./", tr("Image Files (*.png *.jpg *.bmp)"));
+
+
+
+
+   ui->pictureLabel->setPixmap(QPixmap(fileName).scaled(QSize(150,150)));
 
 }
 

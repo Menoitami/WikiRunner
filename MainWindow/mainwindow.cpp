@@ -10,14 +10,12 @@ MainWindow::MainWindow(QWidget *parent)
     this->resize(QSize(1024,768));
 
     regWindow = new RegWindow(this);
-     connect(regWindow, &RegWindow::login_sig, this, &MainWindow::openMenu);
+    setCentralWidget(regWindow);
 
 
 
     menuWindow = new MenuWindow(this);
     menuWindow->hide();
-
-
 
 
 
@@ -38,14 +36,4 @@ MainWindow::~MainWindow()
 }
 
 
-void MainWindow::openMenu(){
-
-
-    currentWid->hide();
-
-    currentWid = menuWindow;
-
-    currentWid->show();
-
-}
 
