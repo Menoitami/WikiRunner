@@ -18,8 +18,10 @@ class RegWindow : public QWidget
     Q_OBJECT
 
 public:
-    explicit RegWindow(QWidget *parent = nullptr, std::shared_ptr<PersonClass> person = nullptr);
+    explicit RegWindow(QWidget *parent = nullptr);
     ~RegWindow();
+
+    void setPerson(std::shared_ptr<PersonClass> person);
 
 
 
@@ -29,8 +31,11 @@ private slots:
     
     void on_nickEdit_textChanged(const QString &arg1);
 
+    void on_createButton_clicked();
+
 signals:
 
+    void createTheRoom_sig();
 
 private:
     Ui::RegWindow *ui;

@@ -2,7 +2,7 @@
 #include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
+    : QMainWindow(parent), currentWid(nullptr), createWindow(nullptr), regWindow(nullptr)
     , ui(new Ui::MainWindow)
 {
 
@@ -21,12 +21,32 @@ MainWindow::MainWindow(QWidget *parent)
     QJsonDocument doc(QJsonDocument::fromJson(fileData));
     person = std::make_shared<PersonClass>(doc);
 
+    openWindow(regWindow);
+    regWindow->setPerson(person);
+    connect(regWindow, &RegWindow::createTheRoom_sig,this, &MainWindow::openCreateRoomWind);
+}
 
-    regWindow = new RegWindow(this, person);
-    setCentralWidget(regWindow);
+
+void MainWindow::openCreateRoomWind(){
+
+    openWindow(createWindow);
+
+}
 
 
-    currentWid = regWindow;
+template <QWidgetDerived T>
+void MainWindow::openWindow(T*& window) {
+    if (currentWid) {
+        currentWid->hide();
+    }
+
+    if (!window) {
+        window = new T(this);
+    }
+
+    currentWid = window;
+    setCentralWidget(window);
+    currentWid->show();
 }
 
 MainWindow::~MainWindow()
@@ -37,6 +57,10 @@ MainWindow::~MainWindow()
     }
     if (person){
         person = nullptr;
+
+    }
+    if (createWindow){
+        delete createWindow;
 
     }
 

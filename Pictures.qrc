@@ -4,4 +4,7 @@
         <file>LocalSettings/Pictures/logos/2.jpeg</file>
         <file>LocalSettings/Pictures/logos/3.jpeg</file>
     </qresource>
+    <qresource prefix="/Sprites">
+        <file>LocalSettings/Pictures/Sprites/arrow.png</file>
+    </qresource>
 </RCC>

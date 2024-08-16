@@ -1,14 +1,21 @@
 #include "regwindow.h"
 #include "ui_regwindow.h"
 
-RegWindow::RegWindow(QWidget *parent, std::shared_ptr<PersonClass> person)
+RegWindow::RegWindow(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::RegWindow)
 {
 
-    this->person= person;
+
 
     ui->setupUi(this);
+
+
+}
+
+void RegWindow::setPerson(std::shared_ptr<PersonClass> person){
+
+    this->person= person;
 
     ui->nickEdit->setText(person->getName());
 
@@ -26,6 +33,8 @@ RegWindow::RegWindow(QWidget *parent, std::shared_ptr<PersonClass> person)
 
     }
 
+
+
 }
 
 void RegWindow::setRandomPic(){
@@ -35,10 +44,6 @@ void RegWindow::setRandomPic(){
     ui->pictureLabel->setPixmap( QPixmap(imagePath).scaled(150, 150));
 
 }
-
-
-
-
 
 void RegWindow::on_changePicButton_clicked()
 {
@@ -61,14 +66,17 @@ void RegWindow::on_changePicButton_clicked()
 }
 
 
-
-
-
 void RegWindow::on_nickEdit_textChanged(const QString &arg1)
 {
     QString name = arg1;
     person->setName(name);
 
+}
+
+
+void RegWindow::on_createButton_clicked()
+{
+    emit createTheRoom_sig();
 }
 
 RegWindow::~RegWindow()
@@ -81,6 +89,9 @@ RegWindow::~RegWindow()
     }
 
 }
+
+
+
 
 
 

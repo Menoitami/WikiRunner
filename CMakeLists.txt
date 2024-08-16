@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.5)
 
 project(WikiRunner VERSION 0.1 LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 set(CMAKE_AUTOUIC ON)
@@ -20,7 +20,7 @@ add_subdirectory(RegWindow)  # Добавляем директориb
 add_subdirectory(GameWindow)
 add_subdirectory(MainWindow)
 add_subdirectory(PersonClass)
-
+add_subdirectory(CreateRoomWindow)
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(WikiRunner
@@ -43,7 +43,7 @@ else()
 endif()
 
 # Линкуем библиотеку RegWindow с основным проектом
-target_link_libraries(WikiRunner PRIVATE Qt${QT_VERSION_MAJOR}::Widgets RegWindow GameWindow MainWindow PersonClass)
+target_link_libraries(WikiRunner PRIVATE Qt${QT_VERSION_MAJOR}::Widgets RegWindow GameWindow MainWindow PersonClass CreateRoomWindow)
 target_link_libraries(WikiRunner PRIVATE Qt6::Network)
 
 
