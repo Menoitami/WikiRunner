@@ -17,12 +17,57 @@ RegWindow::RegWindow(QWidget *parent, std::shared_ptr<PersonClass> person)
 
     QFileInfo checkFile(imagePath);
     if (checkFile.exists() && checkFile.isFile()) {
-        QPixmap pixmap(imagePath);
 
-        ui->pictureLabel->setPixmap(pixmap.scaled(150, 150));
+        ui->pictureLabel->setPixmap( QPixmap(imagePath).scaled(150, 150));
+
     } else {
-        qWarning() << "File does not exist or is not a file:" << imagePath;
+
+        setRandomPic();
+
     }
+
+}
+
+void RegWindow::setRandomPic(){
+
+    unsigned short int randomNumber = QRandomGenerator::global()->bounded(1, 4);
+    QString imagePath = QString(":/PersonLogo/LocalSettings/Pictures/logos/%1.jpeg").arg(randomNumber);
+    ui->pictureLabel->setPixmap( QPixmap(imagePath).scaled(150, 150));
+
+}
+
+
+
+
+
+void RegWindow::on_changePicButton_clicked()
+{
+
+    QString fileName = QFileDialog::getOpenFileName(this,
+                                            tr("Open Image"), "./", tr("Image Files (*.png *.jpg *.bmp *.jpeg)"));
+
+
+    person->setImage(fileName);
+    if(fileName.isEmpty()){
+
+        setRandomPic();
+        return;
+
+    }
+
+
+
+    ui->pictureLabel->setPixmap(QPixmap(fileName).scaled(150,150));
+}
+
+
+
+
+
+void RegWindow::on_nickEdit_textChanged(const QString &arg1)
+{
+    QString name = arg1;
+    person->setName(name);
 
 }
 
@@ -36,20 +81,6 @@ RegWindow::~RegWindow()
     }
 
 }
-
-
-
-
-
-void RegWindow::on_changePicButton_clicked()
-{
-
-    QString fileName = QFileDialog::getOpenFileName(this,
-                                            tr("Open Image"), "./", tr("Image Files (*.png *.jpg *.bmp)"));
-
-    ui->pictureLabel->setPixmap(QPixmap(fileName).scaled(150,150));
-}
-
 
 
 

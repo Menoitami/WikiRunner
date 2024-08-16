@@ -24,9 +24,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     regWindow = new RegWindow(this, person);
     setCentralWidget(regWindow);
-    menuWindow = new MenuWindow(this);
-    menuWindow->hide();
-
 
 
     currentWid = regWindow;
@@ -37,9 +34,6 @@ MainWindow::~MainWindow()
     delete ui;
     if (regWindow) {
         delete regWindow;
-    }
-    if (menuWindow) {
-        delete menuWindow;
     }
     if (person){
         person = nullptr;

@@ -4,6 +4,8 @@
 #include <QString>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QFile>
+#include <QFileInfo>
 
 class PersonClass
 {
@@ -28,7 +30,7 @@ public:
 
 private:
 
-
+    QJsonDocument doc;
     QString name;
     QString image;
     //QString id;

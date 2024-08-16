@@ -1,3 +1,7 @@
 <RCC>
-    <qresource prefix="/PersonLogo"/>
+    <qresource prefix="/PersonLogo">
+        <file>LocalSettings/Pictures/logos/1.jpeg</file>
+        <file>LocalSettings/Pictures/logos/2.jpeg</file>
+        <file>LocalSettings/Pictures/logos/3.jpeg</file>
+    </qresource>
 </RCC>

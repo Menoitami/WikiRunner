@@ -6,6 +6,7 @@
 #include <QFile>
 #include <QJsonDocument>
 #include <QByteArray>
+#include <QRandomGenerator>
 #include <personclass.h>
 
 namespace Ui {
@@ -26,12 +27,17 @@ private slots:
 
     void on_changePicButton_clicked();
     
+    void on_nickEdit_textChanged(const QString &arg1);
+
 signals:
 
 
 private:
     Ui::RegWindow *ui;
     std::shared_ptr<PersonClass> person;
+
+
+    void setRandomPic();
 
 
 };

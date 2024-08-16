@@ -4,7 +4,6 @@
 #include <QMainWindow>
 #include <QRect>
 #include "regwindow.h"
-#include "menuwindow.h"
 #include "personclass.h"
 
 namespace Ui {
@@ -28,7 +27,6 @@ signals:
 private:
     Ui::MainWindow *ui;
     RegWindow* regWindow;
-    MenuWindow* menuWindow;
     QWidget* currentWid;
     std::shared_ptr<PersonClass> person;
 
